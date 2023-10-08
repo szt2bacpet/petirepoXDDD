@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentProject.MainPage"
+             xmlns:viewmodle="clr-namespace:StudentProject.ViewModels"
+             xmlns:model="clr-namespace:StudentProject.Models">
+    <ContentPage.BindingContext>
+        <viewmodle:StudentViewModel/>
+    </ContentPage.BindingContext>
+    <CollectionView BackgroundColor="Transparent"
+                    ItemsSource="{Binding Utasok}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Utas">
+                <Frame Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" WidthRequest="128" Grid.RowSpan="4" Source="ticket.jpg"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding HungarianFullName, StringFormat='Név: {0}'}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding HungarianLongBirthsDay, StringFormat='Foglalási idő: {0}'}"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding SchoolYearAndClass, StringFormat='Hely: {0}'}" />
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding PlanClass, StringFormat='Étrend: {0}'}" />
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
